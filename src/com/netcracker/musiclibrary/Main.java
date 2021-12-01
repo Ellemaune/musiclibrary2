@@ -1,8 +1,7 @@
-package task.tasks;
+package com.netcracker.musiclibrary;
 
 public class Main {
 
     public static void main(String[] args) {
-	// записать файлы idea в gitignore
     }
 }

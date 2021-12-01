@@ -1,4 +1,4 @@
-package task.tasks;
+package com.netcracker.musiclibrary.data;
 
 public class Genre {
     private String name;

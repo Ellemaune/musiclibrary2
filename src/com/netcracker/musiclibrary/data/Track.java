@@ -1,4 +1,6 @@
-package task.tasks;
+package com.netcracker.musiclibrary.data;
+
+import com.netcracker.musiclibrary.data.Genre;
 
 import java.time.Duration;
 
