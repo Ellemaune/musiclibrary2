@@ -8,6 +8,26 @@ public class Track {
     private String singer;
     private String album;
     private Duration recordLength;
+    private Genre genre;
+
+    public Track(String name, String singer, String album,
+                 Duration recordLength){
+
+        setName(name);
+        setSinger(singer);
+        setAlbum(album);
+        setRecordLength(recordLength);
+    }
+
+    public Track(String name, String singer, String album,
+                 Duration recordLength, Genre genre){
+
+        setName(name);
+        setSinger(singer);
+        setAlbum(album);
+        setRecordLength(recordLength);
+        setGenre(genre);
+    }
 
     public String getAlbum() {
         return album;
@@ -39,5 +59,13 @@ public class Track {
 
     public void setRecordLength(Duration recordLength) {
         this.recordLength = recordLength;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 }
