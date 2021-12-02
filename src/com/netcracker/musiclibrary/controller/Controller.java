@@ -1,5 +1,8 @@
 package com.netcracker.musiclibrary.controller;
 
 public class Controller {
-    int num = 10;
+    public static void main(String[] args){
+        System.out.println("Hello world");
+    }
+
 }
