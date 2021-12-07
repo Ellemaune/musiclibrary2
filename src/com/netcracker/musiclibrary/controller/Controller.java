@@ -13,6 +13,9 @@ public class Controller {
     public Controller(){
         model = new Model();
     }
+    public Controller(Model model){
+        this.model = model;
+    }
 
     public boolean createTrack(String name, String singer,
             String album, Duration recordLength, String nameOfGenre){

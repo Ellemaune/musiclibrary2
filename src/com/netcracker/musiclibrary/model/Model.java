@@ -2,6 +2,7 @@ package com.netcracker.musiclibrary.model;
 
 import com.netcracker.musiclibrary.data.Genre;
 import com.netcracker.musiclibrary.data.Track;
+import com.netcracker.musiclibrary.view.ModelChangeListener;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,10 +11,18 @@ public class Model {
 
     private Collection<Genre> genres;
     private Collection<Track> tracks;
+    private Collection<ModelChangeListener> listeners;
 
     public Model(){
         this.genres = new ArrayList<>();
         this.tracks = new ArrayList<>();
+        this.listeners = new ArrayList<>();
+    }
+
+    public Model(ArrayList tracks,ArrayList genres){
+        this.genres = genres;
+        this.tracks = tracks;
+        this.listeners = new ArrayList<>();
     }
 
     public Collection<Genre> getGenresCollection(){
@@ -22,6 +31,10 @@ public class Model {
 
     public Collection<Track> getTracksCollection(){
         return this.tracks;
+    }
+
+    public void addChangeListener(ModelChangeListener listener){
+        listeners.add(listener);
     }
 
     public Track getTrack(String nameTrack){
@@ -45,6 +58,8 @@ public class Model {
     public boolean addTrack(Track track){
         if (!getTracksCollection().contains(track)){
             getTracksCollection().add(track);
+            for (ModelChangeListener listener: listeners)
+                listener.onModelChangeListener();
             return true;
         }
         return false;
@@ -53,6 +68,8 @@ public class Model {
     public boolean addGenre(Genre genre){
         if(!getGenresCollection().contains(genre)){
             getGenresCollection().add(genre);
+            for (ModelChangeListener listener: listeners)
+                listener.onModelChangeListener();
             return true;
         }
         return false;
