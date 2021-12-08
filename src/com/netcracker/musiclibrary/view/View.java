@@ -22,7 +22,6 @@ public class View implements ModelChangeListener{
     }
 
     public void onModelChangeListener(){
-        do {
             System.out.printf("%-15s%n", "Жанр");
             for (Genre genre : model.getGenresCollection())
                 System.out.printf("%-15s%n", genre.getName());
@@ -58,6 +57,5 @@ public class View implements ModelChangeListener{
                 default:
                     onModelChangeListener();
             }
-        }while(true);
     }
 }
