@@ -22,12 +22,13 @@ public class View implements ModelChangeListener{
     }
 
     public void onModelChangeListener(){
-        System.out.println("Список жанров:");
+        System.out.printf("%-15s%n", "Жанр");
         for (Genre genre: model.getGenresCollection())
-            System.out.print(genre.getName()+" ");
+            System.out.printf("%-15s%n",genre.getName());
         System.out.println();
+        System.out.printf("%-20s%-15s%-15s%-15s%-15s%n","Название трека","Длительность","Альбом","Певец","Жанр");
         for (Track track: model.getTracksCollection())
-            System.out.println(track.getName() + " " + track.getRecordLength() + " " + track.getAlbum() + " "+ track.getSinger() + " " + track.getGenre());
+            System.out.printf("%-20s%-15s%-15s%-15s%-15s%n",track.getName(), track.getRecordLength(), track.getAlbum(), track.getSinger(), track.getGenre());
         Scanner in = new Scanner(System.in);
         System.out.println();
         System.out.println("МЕНЮ");
