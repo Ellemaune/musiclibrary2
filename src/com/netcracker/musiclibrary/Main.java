@@ -17,6 +17,7 @@ public class Main {
         for (int i = 1; i < 6; i++){
             tracks.add(new Track("Песня" + i, "Певец" + i, "Альбом" + i, time));
         }
+
         genres.add(new Genre("Рок"));
         genres.add(new Genre("Джаз"));
         genres.add(new Genre("Шансон"));

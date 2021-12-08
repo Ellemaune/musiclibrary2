@@ -71,5 +71,19 @@ public class Track {
         this.genre = genre;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if(!((Track) obj).getAlbum().equals(this.getAlbum())) return false;
+        if(!((Track) obj).getName().equals(this.getName())) return false;
+        if(!((Track) obj).getSinger().equals(this.getSinger())) return false;
+        if(!((Track) obj).getRecordLength().equals(this.getRecordLength())) return false;
+        if(((Track) obj).getGenre() == null) {
+            if(this.getGenre() == null) return true;
+            else return false;
+        }
+        if(!((Track) obj).getGenre().equals(this.getGenre())) return false;
+        return true;
+    }
+
 
 }

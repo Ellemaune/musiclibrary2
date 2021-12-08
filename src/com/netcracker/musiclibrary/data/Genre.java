@@ -15,4 +15,15 @@ public class Genre {
         this.name = name;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if (((Genre)obj).getName().equals(this.getName())) return true;
+        return false;
+    }
+
+    @Override
+    public String toString(){
+        return this.getName();
+    }
+
 }
