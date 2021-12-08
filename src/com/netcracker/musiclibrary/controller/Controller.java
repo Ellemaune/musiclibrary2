@@ -19,15 +19,15 @@ public class Controller {
 
     public boolean createTrack(String name, String singer,
             String album, Duration recordLength, String nameOfGenre){
-        Genre genre = createGenre(nameOfGenre);
+        Genre genre = createGenre(nameOfGenre, false);
         Track track = new Track(name, singer, album, recordLength, genre);
         return model.addTrack(track);
     }
 
-    public Genre createGenre(String nameGenre) {
+    public Genre createGenre(String nameGenre, boolean notifyFlag) {
         if (!nameGenre.equals("")) {
             Genre genre = new Genre(nameGenre);
-            model.addGenre(genre);
+            model.addGenre(genre, notifyFlag);
             return genre;
         }
         return null;

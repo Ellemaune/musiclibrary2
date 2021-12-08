@@ -52,7 +52,7 @@ public class View implements ModelChangeListener{
                 case ("2"):
                     System.out.print("Введите название жанра: ");
                     String nameGenre = in.nextLine();
-                    controller.createGenre(nameGenre);
+                    controller.createGenre(nameGenre, true);
                     break;
                 default:
                     onModelChangeListener();
