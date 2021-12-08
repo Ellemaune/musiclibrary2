@@ -37,6 +37,11 @@ public class Model {
         listeners.add(listener);
     }
 
+    public void notifyAboutChanges(){
+        for (ModelChangeListener listener: listeners)
+            listener.onModelChangeListener();
+    }
+
     public Track getTrack(String nameTrack){
         for(Track track : getTracksCollection()){
             if(track.getName().equals(nameTrack)){
@@ -58,18 +63,18 @@ public class Model {
     public boolean addTrack(Track track){
         if (!getTracksCollection().contains(track)){
             getTracksCollection().add(track);
-            for (ModelChangeListener listener: listeners)
-                listener.onModelChangeListener();
+            notifyAboutChanges();
             return true;
         }
         return false;
     }
 
-    public boolean addGenre(Genre genre){
+    public boolean addGenre(Genre genre, boolean notifyFlag){
         if(!getGenresCollection().contains(genre)){
             getGenresCollection().add(genre);
-            for (ModelChangeListener listener: listeners)
-                listener.onModelChangeListener();
+            if(notifyFlag) {
+                notifyAboutChanges();
+            }
             return true;
         }
         return false;
