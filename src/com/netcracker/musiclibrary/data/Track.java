@@ -2,9 +2,11 @@ package com.netcracker.musiclibrary.data;
 
 import com.netcracker.musiclibrary.data.Genre;
 
+import java.io.Serializable;
 import java.time.Duration;
+import java.util.Objects;
 
-public class Track {
+public class Track implements Serializable {
 
     private String name;
     private String singer;
@@ -12,6 +14,7 @@ public class Track {
     private Duration recordLength;
     private Genre genre;
 
+    /*
     public Track(String name, String singer, String album,
                  Duration recordLength){
 
@@ -20,6 +23,7 @@ public class Track {
         setAlbum(album);
         setRecordLength(recordLength);
     }
+     */
 
     public Track(String name, String singer, String album,
                  Duration recordLength, Genre genre){
@@ -60,6 +64,7 @@ public class Track {
     }
 
     public void setRecordLength(Duration recordLength) {
+
         this.recordLength = recordLength;
     }
 
@@ -85,5 +90,8 @@ public class Track {
         return true;
     }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, singer, album, recordLength, genre);
+    }
 }
