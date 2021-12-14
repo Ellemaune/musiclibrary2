@@ -4,12 +4,12 @@ import com.netcracker.musiclibrary.controller.Controller;
 import com.netcracker.musiclibrary.data.Genre;
 import com.netcracker.musiclibrary.data.Track;
 import com.netcracker.musiclibrary.model.Model;
+import com.netcracker.musiclibrary.model.ModelChangeListener;
 
-import java.io.IOException;
 import java.time.Duration;
 import java.util.Scanner;
 
-public class View implements ModelChangeListener{
+public class View implements ModelChangeListener {
 
     private Model model;
     private Controller controller;

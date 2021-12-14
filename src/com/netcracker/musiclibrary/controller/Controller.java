@@ -10,9 +10,6 @@ import java.time.Duration;
 public class Controller {
     private Model model;
 
-    public Controller(){
-        model = new Model();
-    }
     public Controller(Model model){
         this.model = model;
     }

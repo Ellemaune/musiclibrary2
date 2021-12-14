@@ -13,15 +13,16 @@ public class Main {
     public static void main(String[] args){
         ArrayList<Track> tracks = new ArrayList<>();
         ArrayList<Genre> genres = new ArrayList<>();
-        Duration time = Duration.ofSeconds(200);
-        for (int i = 1; i < 6; i++){
-            tracks.add(new Track("Песня" + i, "Певец" + i, "Альбом" + i, time));
-        }
 
         genres.add(new Genre("Рок"));
         genres.add(new Genre("Джаз"));
         genres.add(new Genre("Шансон"));
         genres.add(new Genre("Шанси"));
+
+        Duration time = Duration.ofSeconds(200);
+        for (int i = 1; i < 6; i++){
+            tracks.add(new Track("Песня" + i, "Певец" + i, "Альбом" + i, time, genres.get(i % 4)));
+        }
 
         Model model = new Model(tracks, genres);
         Controller controller = new Controller(model);

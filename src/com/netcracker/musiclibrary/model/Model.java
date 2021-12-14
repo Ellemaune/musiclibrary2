@@ -2,7 +2,6 @@ package com.netcracker.musiclibrary.model;
 
 import com.netcracker.musiclibrary.data.Genre;
 import com.netcracker.musiclibrary.data.Track;
-import com.netcracker.musiclibrary.view.ModelChangeListener;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -61,7 +60,7 @@ public class Model {
     }
 
     public boolean addTrack(Track track){
-        if (!getTracksCollection().contains(track)){
+        if (!isContainedInTracks(track)){
             getTracksCollection().add(track);
             notifyAboutChanges();
             return true;
@@ -70,7 +69,7 @@ public class Model {
     }
 
     public boolean addGenre(Genre genre, boolean notifyFlag){
-        if(!getGenresCollection().contains(genre)){
+        if(!isContainedInGenres(genre)){
             getGenresCollection().add(genre);
             if(notifyFlag) {
                 notifyAboutChanges();
@@ -81,11 +80,19 @@ public class Model {
     }
 
     public boolean removeTrack(Track track){
-        return getTracksCollection().remove(track);
+        if(getTracksCollection().remove(track)){
+            notifyAboutChanges();
+            return true;
+        }
+        return false;
     }
 
     public boolean removeGenre(Genre genre){
-        return getGenresCollection().remove(genre);
+        if(getGenresCollection().remove(genre)){
+            notifyAboutChanges();
+            return true;
+        }
+        return false;
     }
 
     public boolean isContainedInTracks(Track track){
