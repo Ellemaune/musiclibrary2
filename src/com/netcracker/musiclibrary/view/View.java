@@ -6,6 +6,7 @@ import com.netcracker.musiclibrary.data.Track;
 import com.netcracker.musiclibrary.model.Model;
 import com.netcracker.musiclibrary.model.ModelChangeListener;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Scanner;
 
@@ -21,7 +22,7 @@ public class View implements ModelChangeListener {
         onModelChangeListener();
     }
 
-    public void onModelChangeListener(){
+    public void onModelChangeListener() {
             System.out.printf("%-15s%n", "Жанр");
             for (Genre genre : model.getGenresCollection())
                 System.out.printf("%-15s%n", genre.getName());
@@ -34,6 +35,8 @@ public class View implements ModelChangeListener {
             System.out.println("МЕНЮ");
             System.out.println("1 - Добавить трек");
             System.out.println("2 - Добавить жанр");
+            System.out.println("3 - Сохранить данные в файл");
+            System.out.println("4 - Загрузить данные из файла");
             System.out.print("Введите действие: ");
             switch (in.nextLine()) {
                 case ("1"):
@@ -52,7 +55,36 @@ public class View implements ModelChangeListener {
                 case ("2"):
                     System.out.print("Введите название жанра: ");
                     String nameGenre = in.nextLine();
-                    controller.createGenre(nameGenre, true);
+                    try{
+                        controller.createGenre(nameGenre, true);
+                    }
+                    catch(RuntimeException runtimeException){
+                        System.out.print(runtimeException.getMessage());
+                    }
+
+                    break;
+                case ("3"):
+                    System.out.print("Введите имя файла: ");
+                    String saveFileName = in.nextLine();
+                    try {
+                        controller.saveDataToFile(saveFileName);
+                    }
+                    catch(IOException ioException){
+                        System.out.print("Ошибка доступа к файлу.");
+                    }
+                    break;
+                case ("4"):
+                    System.out.print("Введите имя файла: ");
+                    String inputFileName = in.nextLine();
+                    try {
+                        controller.inputDataFromFile(inputFileName);
+                    }
+                    catch(IOException ioException){
+                        System.out.print("Ошибка доступа к файлу.");
+                    }
+                    catch(ClassNotFoundException classNotFoundException){
+                        System.out.print("Класс не найден.");
+                    }
                     break;
                 default:
                     onModelChangeListener();

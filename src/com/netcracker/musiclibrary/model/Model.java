@@ -32,6 +32,16 @@ public class Model {
         return this.tracks;
     }
 
+    public void setGenresCollection(Collection<Genre> genres){
+        this.genres = genres;
+        notifyAboutChanges();
+    }
+
+    public void setTracksCollection(Collection<Track> tracks){
+        this.tracks = tracks;
+        notifyAboutChanges();
+    }
+
     public void addChangeListener(ModelChangeListener listener){
         listeners.add(listener);
     }

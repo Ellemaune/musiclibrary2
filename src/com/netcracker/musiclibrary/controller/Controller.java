@@ -46,7 +46,8 @@ public class Controller {
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         ArrayList<Track> tracks = (ArrayList<Track>) objectInputStream.readObject();
         ArrayList<Genre> genres = (ArrayList<Genre>) objectInputStream.readObject();
-        this.model = new Model(tracks, genres);
+        this.model.setTracksCollection(tracks);
+        this.model.setGenresCollection(genres);
         objectInputStream.close();
     }
 
