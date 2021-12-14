@@ -69,10 +69,12 @@ public class Model {
         return null;
     }
 
-    public boolean addTrack(Track track){
+    public boolean addTrack(Track track, boolean notifyFlag){
         if (!isContainedInTracks(track)){
             getTracksCollection().add(track);
-            notifyAboutChanges();
+            if(notifyFlag) {
+                notifyAboutChanges();
+            }
             return true;
         }
         return false;
