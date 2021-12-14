@@ -103,4 +103,5 @@ public class Model {
         return getGenresCollection().contains(genre);
     }
 
+
 }

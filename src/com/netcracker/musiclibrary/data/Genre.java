@@ -1,8 +1,9 @@
 package com.netcracker.musiclibrary.data;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Genre {
+public class Genre implements Serializable {
     private String name;
 
     public Genre(String name){
