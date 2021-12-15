@@ -5,7 +5,6 @@ import com.netcracker.musiclibrary.data.Track;
 import com.netcracker.musiclibrary.model.Model;
 import com.netcracker.musiclibrary.view.View;
 
-import javax.swing.*;
 import java.io.*;
 import java.time.Duration;
 import java.util.ArrayList;

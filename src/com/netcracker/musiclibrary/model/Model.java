@@ -117,6 +117,4 @@ public class Model {
     public boolean isContainedInGenres(Genre genre){
         return getGenresCollection().contains(genre);
     }
-
-
 }
