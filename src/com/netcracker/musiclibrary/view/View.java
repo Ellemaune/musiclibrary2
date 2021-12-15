@@ -39,7 +39,8 @@ public class View implements ModelChangeListener {
             System.out.println("2 - Добавить жанр");
             System.out.println("3 - Сохранить данные в файл");
             System.out.println("4 - Загрузить данные из файла");
-            System.out.println("5 - Поиск по названию трека");
+            System.out.println("5 - Добавить данные из другого файла");
+            System.out.println("6 - Поиск по названию трека");
             System.out.print("Введите действие: ");
             switch (in.nextLine()) {
                 case ("1"):
@@ -90,6 +91,19 @@ public class View implements ModelChangeListener {
                     }
                     break;
                 case ("5"):
+                    System.out.print("Введите имя файла: ");
+                    String updateFileName = in.nextLine();
+                    try {
+                        controller.updateDataFromFile(updateFileName);
+                    }
+                    catch(IOException ioException){
+                        System.out.print("Ошибка доступа к файлу.");
+                    }
+                    catch(ClassNotFoundException classNotFoundException){
+                        System.out.print("Класс не найден.");
+                    }
+                    break;
+                case ("6"):
                     System.out.print("Введите название песни: ");
                     String name = in.nextLine();
                     modelSearch = new Model();

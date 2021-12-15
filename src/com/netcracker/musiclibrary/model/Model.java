@@ -34,12 +34,10 @@ public class Model {
 
     public void setGenresCollection(Collection<Genre> genres){
         this.genres = genres;
-        notifyAboutChanges();
     }
 
     public void setTracksCollection(Collection<Track> tracks){
         this.tracks = tracks;
-        notifyAboutChanges();
     }
 
     public void addChangeListener(ModelChangeListener listener){
@@ -74,10 +72,12 @@ public class Model {
         return null;
     }
 
-    public boolean addTrack(Track track){
+    public boolean addTrack(Track track, boolean notifyFlag){
         if (!isContainedInTracks(track)){
             getTracksCollection().add(track);
-            notifyAboutChanges();
+            if(notifyFlag) {
+                notifyAboutChanges();
+            }
             return true;
         }
         return false;

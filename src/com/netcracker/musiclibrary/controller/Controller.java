@@ -22,7 +22,7 @@ public class Controller {
             String album, Duration recordLength, String nameOfGenre){
         Genre genre = createGenre(nameOfGenre, false);
         Track track = new Track(name, singer, album, recordLength, genre);
-        return model.addTrack(track);
+        return model.addTrack(track, true);
     }
 
     public Genre createGenre(String nameGenre, boolean notifyFlag)
@@ -54,15 +54,36 @@ public class Controller {
         objectOutputStream.writeObject(this.model.getTracksCollection());
         objectOutputStream.writeObject(this.model.getGenresCollection());
         objectOutputStream.close();
+        model.notifyAboutChanges();
     }
 
-    public void inputDataFromFile(String fileName) throws IOException, ClassNotFoundException {
+    public void inputDataFromFile(String fileName)
+                throws IOException, ClassNotFoundException {
+
         FileInputStream fileInputStream = new FileInputStream(fileName);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         ArrayList<Track> tracks = (ArrayList<Track>) objectInputStream.readObject();
         ArrayList<Genre> genres = (ArrayList<Genre>) objectInputStream.readObject();
-        this.model.setTracksCollection(tracks);
-        this.model.setGenresCollection(genres);
         objectInputStream.close();
+        this.model.setGenresCollection(genres);
+        this.model.setTracksCollection(tracks);
+        model.notifyAboutChanges();
+    }
+
+    public void updateDataFromFile(String fileName)
+                throws IOException, ClassNotFoundException {
+
+        FileInputStream fileInputStream = new FileInputStream(fileName);
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        ArrayList<Track> tracks = (ArrayList<Track>) objectInputStream.readObject();
+        ArrayList<Genre> genres = (ArrayList<Genre>) objectInputStream.readObject();
+        objectInputStream.close();
+        for (Track track: tracks){
+            this.model.addTrack(track, false);
+        }
+        for(Genre genre: genres){
+            this.model.addGenre(genre, false);
+        }
+        model.notifyAboutChanges();
     }
 }
