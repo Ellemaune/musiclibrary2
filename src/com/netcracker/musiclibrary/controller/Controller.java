@@ -3,11 +3,13 @@ package com.netcracker.musiclibrary.controller;
 import com.netcracker.musiclibrary.data.Genre;
 import com.netcracker.musiclibrary.data.Track;
 import com.netcracker.musiclibrary.model.Model;
+import com.netcracker.musiclibrary.view.View;
 
 import javax.swing.*;
 import java.io.*;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Controller {
     private Model model;
@@ -33,6 +35,19 @@ public class Controller {
         throw new RuntimeException("Имя жанра не может быть пустым!");
     }
 
+    public void searchName(String str, Model modelSearch, View view){
+        for (Track track : model.getTracksCollection()){
+            if (track.getName().toLowerCase(Locale.ROOT).contains(str.toLowerCase(Locale.ROOT)))
+                modelSearch.addTrack(track);
+        }
+        for (Genre genre : model.getGenresCollection()){
+            if (genre.getName().toLowerCase(Locale.ROOT).contains(str.toLowerCase(Locale.ROOT)))
+                modelSearch.addGenre(genre, false);
+        }
+        modelSearch.addChangeListener(view);
+        modelSearch.notifyAboutCreate();
+    }
+
     public void saveDataToFile(String fileName) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream(fileName);
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -50,5 +65,4 @@ public class Controller {
         this.model.setGenresCollection(genres);
         objectInputStream.close();
     }
-
 }
