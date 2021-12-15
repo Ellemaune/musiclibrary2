@@ -5,7 +5,6 @@ import com.netcracker.musiclibrary.data.Track;
 import com.netcracker.musiclibrary.model.Model;
 import com.netcracker.musiclibrary.view.View;
 
-import javax.swing.*;
 import java.io.*;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -38,7 +37,7 @@ public class Controller {
     public void searchName(String str, Model modelSearch, View view){
         for (Track track : model.getTracksCollection()){
             if (track.getName().toLowerCase(Locale.ROOT).contains(str.toLowerCase(Locale.ROOT)))
-                modelSearch.addTrack(track);
+                modelSearch.addTrack(track, false);
         }
         for (Genre genre : model.getGenresCollection()){
             if (genre.getName().toLowerCase(Locale.ROOT).contains(str.toLowerCase(Locale.ROOT)))
