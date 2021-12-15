@@ -49,6 +49,11 @@ public class Model {
             listener.onModelChangeListener();
     }
 
+    public void notifyAboutCreate(){
+        for (ModelChangeListener listener: listeners)
+            listener.onModelSearchCreate();
+    }
+
     public Track getTrack(String nameTrack){
         for(Track track : getTracksCollection()){
             if(track.getName().equals(nameTrack)){

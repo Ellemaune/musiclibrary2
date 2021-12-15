@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class View implements ModelChangeListener {
 
     private Model model;
+    private Model modelSearch;
     private Controller controller;
 
     public View(Model model, Controller controller){
@@ -23,6 +24,7 @@ public class View implements ModelChangeListener {
     }
 
     public void onModelChangeListener() {
+            System.out.println();
             System.out.printf("%-15s%n", "Жанр");
             for (Genre genre : model.getGenresCollection())
                 System.out.printf("%-15s%n", genre.getName());
@@ -38,6 +40,7 @@ public class View implements ModelChangeListener {
             System.out.println("3 - Сохранить данные в файл");
             System.out.println("4 - Загрузить данные из файла");
             System.out.println("5 - Добавить данные из другого файла");
+            System.out.println("6 - Поиск по названию трека");
             System.out.print("Введите действие: ");
             switch (in.nextLine()) {
                 case ("1"):
@@ -100,8 +103,30 @@ public class View implements ModelChangeListener {
                         System.out.print("Класс не найден.");
                     }
                     break;
+                case ("6"):
+                    System.out.print("Введите название песни: ");
+                    String name = in.nextLine();
+                    modelSearch = new Model();
+                    controller.searchName(name, modelSearch,this);
+                    break;
                 default:
+                    System.out.println("Вы ввели некорректные данные. Повторите помытку");
                     onModelChangeListener();
             }
+    }
+
+    @Override
+    public void onModelSearchCreate() {
+        System.out.println();
+        System.out.println("Результат поиска -------------------------------------------");
+        System.out.printf("%-15s%n", "Жанр");
+        for (Genre genre : modelSearch.getGenresCollection())
+            System.out.printf("%-15s%n", genre.getName());
+        System.out.println();
+        System.out.printf("%-20s%-15s%-15s%-15s%-15s%n", "Название трека", "Длительность", "Альбом", "Певец", "Жанр");
+        for (Track track : modelSearch.getTracksCollection())
+            System.out.printf("%-20s%-15s%-15s%-15s%-15s%n", track.getName(), track.getRecordLength(), track.getAlbum(), track.getSinger(), track.getGenre());
+        System.out.println("------------------------------------------------------------");
+        onModelChangeListener();
     }
 }
