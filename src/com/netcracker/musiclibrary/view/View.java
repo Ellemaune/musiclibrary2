@@ -8,17 +8,22 @@ import com.netcracker.musiclibrary.model.ModelChangeListener;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Locale;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class View implements ModelChangeListener {
 
     private Model model;
-    private Model modelSearch;
     private Controller controller;
+    private String searchLine;
 
     public View(Model model, Controller controller){
         this.model = model;
         this.controller = controller;
+        this.searchLine = "";
         model.addChangeListener(this);
         onModelChangeListener();
     }
@@ -26,18 +31,16 @@ public class View implements ModelChangeListener {
     public void onModelChangeListener() {
             System.out.println();
             System.out.printf("%-10s%-15s%n","Номер" ,"Жанр");
-            int num = 1;
-            for (Genre genre : model.getGenresCollection()){
-                System.out.printf("%-10s%-15s%n", num , genre.name());
-                num++;
-            }
+            final AtomicInteger num = new AtomicInteger(1);
+            model.getGenresCollection().stream().filter(genre -> genre.name().toLowerCase(Locale.ROOT).contains(searchLine.toLowerCase(Locale.ROOT))).forEach(genre -> {
+                System.out.printf("%-10s%-15s%n", num.getAndIncrement() , genre.name());
+            });
             System.out.println();
+            num.set(1);
             System.out.printf("%-10s%-20s%-15s%-15s%-15s%-15s%n","Номер", "Название трека", "Длительность", "Альбом", "Певец", "Жанр");
-            num = 1;
-            for (Track track : model.getTracksCollection()){
-                System.out.printf("%-10s%-20s%-15s%-15s%-15s%-15s%n", num, track.name(), track.recordLength(), track.album(), track.singer(), track.genre());
-                num++;
-            }
+             model.getTracksCollection().stream().filter(track -> track.name().toLowerCase(Locale.ROOT).contains(searchLine.toLowerCase(Locale.ROOT))).forEach(track -> {
+                 System.out.printf("%-10s%-20s%-15s%-15s%-15s%-15s%n", num.getAndIncrement(), track.name(), track.recordLength(), track.album(), track.singer(), track.genre());
+             });
             Scanner in = new Scanner(System.in);
             System.out.println();
             System.out.println("МЕНЮ");
@@ -96,28 +99,12 @@ public class View implements ModelChangeListener {
                     break;
                 case ("5"):
                     System.out.print("Введите название песни: ");
-                    String name = in.nextLine();
-                    modelSearch = new Model();
-                    controller.searchName(name, modelSearch,this);
+                    searchLine = in.nextLine();
+                    onModelChangeListener();
                     break;
                 default:
                     System.out.println("Вы ввели некорректные данные. Повторите попытку.");
                     onModelChangeListener();
             }
-    }
-
-    @Override
-    public void onModelSearchCreate() {
-        System.out.println();
-        System.out.println("Результат поиска -------------------------------------------");
-        System.out.printf("%-15s%n", "Жанр");
-        for (Genre genre : modelSearch.getGenresCollection())
-            System.out.printf("%-15s%n", genre.name());
-        System.out.println();
-        System.out.printf("%-20s%-15s%-15s%-15s%-15s%n", "Название трека", "Длительность", "Альбом", "Певец", "Жанр");
-        for (Track track : modelSearch.getTracksCollection())
-            System.out.printf("%-20s%-15s%-15s%-15s%-15s%n", track.name(), track.recordLength(), track.album(), track.singer(), track.genre());
-        System.out.println("------------------------------------------------------------");
-        onModelChangeListener();
     }
 }
