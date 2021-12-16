@@ -40,6 +40,16 @@ public class Model {
         this.tracks = tracks;
     }
 
+    public void addAllUniqueData(Collection<Track> tracks, Collection<Genre> genres){
+        for (Track track: tracks){
+            addTrack(track, false);
+        }
+        for(Genre genre: genres){
+            addGenre(genre, false);
+        }
+        notifyAboutChanges();
+    }
+
     public void addChangeListener(ModelChangeListener listener){
         listeners.add(listener);
     }
