@@ -56,7 +56,7 @@ public class Model {
 
     public Track getTrack(String nameTrack){
         for(Track track : getTracksCollection()){
-            if(track.getName().equals(nameTrack)){
+            if(track.name().equals(nameTrack)){
                 return track;
             }
         }
@@ -65,7 +65,7 @@ public class Model {
 
     public Genre getGenre(String nameGenre){
         for(Genre genre : getGenresCollection()) {
-            if (genre.getName().equals(nameGenre)){
+            if (genre.name().equals(nameGenre)){
                 return genre;
             }
         }

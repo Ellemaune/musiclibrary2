@@ -36,11 +36,11 @@ public class Controller {
 
     public void searchName(String str, Model modelSearch, View view){
         for (Track track : model.getTracksCollection()){
-            if (track.getName().toLowerCase(Locale.ROOT).contains(str.toLowerCase(Locale.ROOT)))
+            if (track.name().toLowerCase(Locale.ROOT).contains(str.toLowerCase(Locale.ROOT)))
                 modelSearch.addTrack(track, false);
         }
         for (Genre genre : model.getGenresCollection()){
-            if (genre.getName().toLowerCase(Locale.ROOT).contains(str.toLowerCase(Locale.ROOT)))
+            if (genre.name().toLowerCase(Locale.ROOT).contains(str.toLowerCase(Locale.ROOT)))
                 modelSearch.addGenre(genre, false);
         }
         modelSearch.addChangeListener(view);

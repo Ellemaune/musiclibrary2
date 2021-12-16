@@ -28,14 +28,14 @@ public class View implements ModelChangeListener {
             System.out.printf("%-10s%-15s%n","Номер" ,"Жанр");
             int num = 1;
             for (Genre genre : model.getGenresCollection()){
-                System.out.printf("%-10s%-15s%n", num , genre.getName());
+                System.out.printf("%-10s%-15s%n", num , genre.name());
                 num++;
             }
             System.out.println();
             System.out.printf("%-10s%-20s%-15s%-15s%-15s%-15s%n","Номер", "Название трека", "Длительность", "Альбом", "Певец", "Жанр");
             num = 1;
             for (Track track : model.getTracksCollection()){
-                System.out.printf("%-10s%-20s%-15s%-15s%-15s%-15s%n", num, track.getName(), track.getRecordLength(), track.getAlbum(), track.getSinger(), track.getGenre());
+                System.out.printf("%-10s%-20s%-15s%-15s%-15s%-15s%n", num, track.name(), track.recordLength(), track.album(), track.singer(), track.genre());
                 num++;
             }
             Scanner in = new Scanner(System.in);
@@ -126,11 +126,11 @@ public class View implements ModelChangeListener {
         System.out.println("Результат поиска -------------------------------------------");
         System.out.printf("%-15s%n", "Жанр");
         for (Genre genre : modelSearch.getGenresCollection())
-            System.out.printf("%-15s%n", genre.getName());
+            System.out.printf("%-15s%n", genre.name());
         System.out.println();
         System.out.printf("%-20s%-15s%-15s%-15s%-15s%n", "Название трека", "Длительность", "Альбом", "Певец", "Жанр");
         for (Track track : modelSearch.getTracksCollection())
-            System.out.printf("%-20s%-15s%-15s%-15s%-15s%n", track.getName(), track.getRecordLength(), track.getAlbum(), track.getSinger(), track.getGenre());
+            System.out.printf("%-20s%-15s%-15s%-15s%-15s%n", track.name(), track.recordLength(), track.album(), track.singer(), track.genre());
         System.out.println("------------------------------------------------------------");
         onModelChangeListener();
     }
