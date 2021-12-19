@@ -46,7 +46,7 @@ public class View implements ModelChangeListener {
             num.set(1);
             System.out.printf("%-10s%-20s%-15s%-15s%-15s%-15s%n","Номер", "Название трека", "Длительность", "Альбом", "Певец", "Жанр");
              model.getTracksCollection().stream().filter(track -> track.name().toLowerCase(Locale.ROOT).contains(searchLine.toLowerCase(Locale.ROOT))).forEach(track -> {
-                 System.out.printf("%-10s%-20s%-15s%-15s%-15s%-15s%n", num.getAndIncrement(), track.name(), track.recordLength(), track.album(), track.singer(), track.genre());
+                 System.out.printf("%-10s%-20s%-15s%-15s%-15s%-15s%n", num.getAndIncrement(), track.name(), track.recordLength(), track.album(), track.singer(), track.genre().name());
              });
             Scanner in = new Scanner(System.in);
             System.out.println();
