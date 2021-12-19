@@ -9,8 +9,18 @@ import com.netcracker.musiclibrary.view.View;
 import java.time.Duration;
 import java.util.ArrayList;
 
+/**
+ * @author Alexander D., Anna S., Ivan L..
+ * @version 1.0
+ * @since 1.6
+ */
 public class Main {
+    /**
+     * Here start point of the program
+     * @param args command line values
+     */
     public static void main(String[] args){
+
         ArrayList<Track> tracks = new ArrayList<>();
         ArrayList<Genre> genres = new ArrayList<>();
 

@@ -14,12 +14,20 @@ import java.util.Locale;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * View Model and Controller Operation
+ */
 public class View implements ModelChangeListener {
 
     private Model model;
     private Controller controller;
     private String searchLine;
 
+    /**
+     * Constructor - creating a view object
+     * @see Model
+     * @see Controller
+     */
     public View(Model model, Controller controller){
         this.model = model;
         this.controller = controller;
@@ -28,6 +36,9 @@ public class View implements ModelChangeListener {
         onModelChangeListener();
     }
 
+    /**
+     * Model control panel
+     */
     public void onModelChangeListener() {
             System.out.println();
             System.out.printf("%-10s%-15s%n","Номер" ,"Жанр");
@@ -49,6 +60,10 @@ public class View implements ModelChangeListener {
             System.out.println("3 - Сохранить данные в файл");
             System.out.println("4 - Добавить данные из файла");
             System.out.println("5 - Поиск по названию трека");
+            System.out.println("6 - Удаление трека");
+            System.out.println("7 - Поменять трек");
+            System.out.println("8 - Удаление жанра");
+            System.out.println("9 - Поменять жанр");
             System.out.print("Введите действие: ");
             switch (in.nextLine()) {
                 case ("1"):
@@ -102,6 +117,39 @@ public class View implements ModelChangeListener {
                     searchLine = in.nextLine();
                     onModelChangeListener();
                     break;
+                case ("6"):
+                    System.out.print("Введите индекс удаляемого трека: ");
+                    int indexTrack = Integer.parseInt(in.nextLine());
+                    controller.removeTrack(indexTrack);
+                    break;
+                case ("7"):
+                    System.out.print("Введите индекс изменяемого трека: ");
+
+                        int indexEdit = Integer.parseInt(in.nextLine());
+                        System.out.print("Введите название песни: ");
+                        String nameTrackToEdit = in.nextLine();
+                        System.out.print("Введите время записи (в секундах): ");
+                        Duration timeToEdit = Duration.ofSeconds(Integer.parseInt(in.nextLine()));
+                        System.out.print("Введите альбом: ");
+                        String albumToEdit = in.nextLine();
+                        System.out.print("Введите певца: ");
+                        String singerToEdit = in.nextLine();
+                        System.out.print("Введите жанр: ");
+                        String genreToEdit = in.nextLine();
+                        controller.editTrack(indexEdit,nameTrackToEdit,singerToEdit,albumToEdit,timeToEdit,genreToEdit);
+                    break;
+                case ("8"):
+                    System.out.println("Введите индекс удаляемого жанра: ");
+                    int indexForRemoveGenre = Integer.parseInt(in.nextLine());
+                    controller.removeGenre(indexForRemoveGenre);
+                    break;
+                case ("9"):
+                    System.out.print("Введите индекс изменяемого жанра: ");
+                    int indexEditGenre = Integer.parseInt(in.nextLine());
+                    System.out.print("Введите жанр: ");
+                    String genreToEditOnlyGenre = in.nextLine();
+                    controller.editGerge(indexEditGenre,genreToEditOnlyGenre);
+
                 default:
                     System.out.println("Вы ввели некорректные данные. Повторите попытку.");
                     onModelChangeListener();
