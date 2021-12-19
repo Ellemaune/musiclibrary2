@@ -1,15 +1,11 @@
 package com.netcracker.musiclibrary.view;
 
 import com.netcracker.musiclibrary.controller.Controller;
-import com.netcracker.musiclibrary.data.Genre;
-import com.netcracker.musiclibrary.data.Track;
 import com.netcracker.musiclibrary.model.Model;
 import com.netcracker.musiclibrary.model.ModelChangeListener;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -148,7 +144,7 @@ public class View implements ModelChangeListener {
                     int indexEditGenre = Integer.parseInt(in.nextLine());
                     System.out.print("Введите жанр: ");
                     String genreToEditOnlyGenre = in.nextLine();
-                    controller.editGerge(indexEditGenre,genreToEditOnlyGenre);
+                    controller.editGenre(indexEditGenre,genreToEditOnlyGenre);
 
                 default:
                     System.out.println("Вы ввели некорректные данные. Повторите попытку.");
