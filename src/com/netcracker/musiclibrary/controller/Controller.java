@@ -85,21 +85,21 @@ public class Controller {
         if(index-1>=0 && index-1<=model.getGenresCollection().size()) {
             ArrayList<Genre> genres = (ArrayList<Genre>) model.getGenresCollection();
             ArrayList<Track> tracks = (ArrayList<Track>) model.getTracksCollection();
+
             for(int i = 0 ; i<model.getTracksCollection().size();i++)
             {
-                if(tracks.get(i).genre()==genres.get(index-1))
+                if(tracks.get(i).genre().equals(genres.get(index-1)))
                 {
-                    this.model.removeTrack(tracks.get(i));
+                    tracks.remove(i);
                 }
-
             }
             this.model.removeGenre(genres.get(index-1));
-
         }else
         {
             this.model.notifyAboutChanges();
         }
     }
+
 
     /**
      * Method for changing a Track object by index in an array
@@ -126,7 +126,7 @@ public class Controller {
      * @param index - index in the array (input starts with one)
      * @see  Genre
      */
-    public void editGerge(int index, String nameOfGenre)
+    public void editGenre(int index, String nameOfGenre)
     {
         Genre newGenre = new Genre(nameOfGenre);
         if(index-1>=0 && index-1<=model.getGenresCollection().size() && newGenre.name()!="") {
