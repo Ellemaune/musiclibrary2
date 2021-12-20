@@ -91,6 +91,7 @@ public class Controller {
                 if(tracks.get(i).genre().equals(genres.get(index-1)))
                 {
                     tracks.remove(i);
+                    i--;
                 }
             }
             this.model.removeGenre(genres.get(index-1));
@@ -147,7 +148,6 @@ public class Controller {
         {
             this.model.notifyAboutChanges();
         }
-
     }
     /**
      * Deserialization Method

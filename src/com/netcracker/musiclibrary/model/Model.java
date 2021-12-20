@@ -83,7 +83,7 @@ public class Model {
 
     /**
      * Method for adding change a listener
-     * @param listener - слушатель
+     * @see ModelChangeListener
      */
     public void addChangeListener(ModelChangeListener listener){
         listeners.add(listener);
