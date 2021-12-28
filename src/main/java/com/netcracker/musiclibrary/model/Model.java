@@ -3,9 +3,11 @@ package com.netcracker.musiclibrary.model;
 import com.netcracker.musiclibrary.data.Genre;
 import com.netcracker.musiclibrary.data.Track;
 
+import javax.inject.Singleton;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collection;
-
+@Singleton
 /**
  * Model class - a class containing references to arrays of Track and Genre objects and methods of working with them
  */
@@ -20,8 +22,22 @@ public class Model {
      * Default constructor
      */
     public Model(){
-        this.genres = new ArrayList<>();
-        this.tracks = new ArrayList<>();
+/*        this.genres = new ArrayList<>();
+        this.tracks = new ArrayList<>();*/
+        ArrayList<Track> tracks = new ArrayList<>();
+        ArrayList<Genre> genres = new ArrayList<>();
+
+        genres.add(new Genre("Рок"));
+        genres.add(new Genre("Джаз"));
+        genres.add(new Genre("Шансон"));
+        genres.add(new Genre("Шанси"));
+
+        Duration time = Duration.ofSeconds(200);
+        for (int i = 1; i < 6; i++){
+            tracks.add(new Track("Песня" + i, "Певец" + i, "Альбом" + i, time, genres.get(i % 4)));
+        }
+        this.genres = genres;
+        this.tracks = tracks;
     }
 
     /**
