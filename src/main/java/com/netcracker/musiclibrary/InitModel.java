@@ -33,8 +33,4 @@ public class InitModel {
         this.model.setTracksCollection(tracks);
         this.model.setGenresCollection(genres);
     }
-
-    public Model getModel(){
-        return model;
-    }
 }
