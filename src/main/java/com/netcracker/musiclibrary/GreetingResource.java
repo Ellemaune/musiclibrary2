@@ -14,7 +14,7 @@ import java.util.Collection;
 @Path("/myprog")
 public class GreetingResource {
     @Inject
-    Model model;
+    InitModel initModel;
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
@@ -26,13 +26,13 @@ public class GreetingResource {
     @Path("/tracks")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<Track> getTracks() {
-        return model.getTracksCollection();
+        return initModel.getModel().getTracksCollection();
     }
 
     @GET
     @Path("/genres")
     @Produces(MediaType.APPLICATION_JSON)
     public Collection<Genre> getGenres() {
-        return model.getGenresCollection();
+        return initModel.getModel().getGenresCollection();
     }
 }
