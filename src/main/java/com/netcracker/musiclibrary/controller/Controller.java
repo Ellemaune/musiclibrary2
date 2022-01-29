@@ -4,10 +4,11 @@ import com.netcracker.musiclibrary.data.Genre;
 import com.netcracker.musiclibrary.data.Track;
 import com.netcracker.musiclibrary.model.Model;
 
+import javax.inject.Singleton;
 import java.io.*;
 import java.time.Duration;
 import java.util.ArrayList;
-
+@Singleton
 /**
  * The Controller class containing the Model object and methods for working with it
  */

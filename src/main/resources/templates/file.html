@@ -5,23 +5,30 @@
     <title>Title</title>
 </head>
 <body>
-<button class="button">Test</button>
+<h2>Upload file</h2>
+<form method="post" action="file/upload"
+      enctype="multipart/form-data">
+    <input type="hidden" name="action" value="upload" /> <label>Load
+        your file:</label> <input type="file" name="attachment" /> <br /> <input
+            type="submit" value="Upload file" />
+</form>
+<h2>Download file</h2>
+<button class="download" onclick = "downloadFile()">Download</button>
 <script>
-    function getQ() {
-        fetch("http://localhost:8080/myprog/tracks", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-        })
-            .then((response) => {
-                console.log(response.json())
-            })
+    function downloadFile() {
+        var req = new XMLHttpRequest();
+        req.open("GET", "http://localhost:8080/file/download", true);
+        req.responseType = "blob";
+        req.onload = function (event) {
+            var blob = req.response;
+            var fileName = req.getResponseHeader("fileName") //if you have the fileName header available
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = fileName;
+            link.click();
+        };
+        req.send();
     }
-    document.querySelector(".button").addEventListener("click", function (){
-        getQ();
-    })
 </script>
 </body>
 </html>
