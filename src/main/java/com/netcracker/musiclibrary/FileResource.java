@@ -21,8 +21,6 @@ import java.util.Map;
 public class FileResource {
     @Inject
     Model model;
-    @Inject
-    Controller controller;
 
     @Context
     private ServletContext context;
@@ -30,12 +28,11 @@ public class FileResource {
     @POST
     @Path("/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response uploadFile(MultipartFormDataInput input) throws IOException {
+    public Response uploadFile(MultipartFormDataInput input) {
         Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
         List<InputPart> inputParts = uploadForm.get("attachment");
         for (InputPart inputPart : inputParts) {
             try {
-                MultivaluedMap<String, String> header = inputPart.getHeaders();
                 ObjectInputStream objectInputStream = new ObjectInputStream(inputPart.getBody(InputStream.class, null));
                 ArrayList<Track> tracks = (ArrayList<Track>) objectInputStream.readObject();
                 ArrayList<Genre> genres = (ArrayList<Genre>) objectInputStream.readObject();
@@ -51,7 +48,7 @@ public class FileResource {
     @GET
     @Path("/download")
     @Produces(MediaType.APPLICATION_OCTET_STREAM)
-    public Response downloadFileWithGet() throws IOException {
+    public Response downloadFileWithGet() {
         StreamingOutput output = outputStream -> {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
             objectOutputStream.writeObject(this.model.getTracksCollection());
