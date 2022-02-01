@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
-@Path("file")
+@Path("genres")
 @ApplicationScoped
 public class GenresPage {
 

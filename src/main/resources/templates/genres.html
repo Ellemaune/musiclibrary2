@@ -3,26 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Genres processing</title>
+    <script type="text/javascript" src="/js/genresScripts.js" ></script>
 </head>
 <body>
 <h2>Genres Collection</h2>
-<button class="button">Test</button>
-<script>
-    function getQ() {
-        fetch("http://localhost:8080/genres", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
+<input type="button" value="Refresh" onclick="refreshTable()"/>
+<div>
+    <table id="genresTable"></table>
+</div>
 
-        })
-            .then((response) => {
-                console.log(response.json())
-            })
-    }
-    document.querySelector(".button").addEventListener("click", function (){
-        getQ();
-    })
-</script>
 </body>
 </html>

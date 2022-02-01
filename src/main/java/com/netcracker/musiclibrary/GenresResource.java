@@ -13,13 +13,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Collection;
 
-@Path("genres")
+@Path("/genres")
 public class GenresResource {
     @Inject
     Model model;
-
-    @Inject
-    Template genres;
 
 /*    @GET
     @Produces(MediaType.APPLICATION_JSON)
