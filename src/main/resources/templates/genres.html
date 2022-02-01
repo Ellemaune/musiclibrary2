@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Genres processing</title>
+</head>
+<body>
+<h2>Genres Collection</h2>
+<button class="button">Test</button>
+<script>
+    function getQ() {
+        fetch("http://localhost:8080/genres", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+        })
+            .then((response) => {
+                console.log(response.json())
+            })
+    }
+    document.querySelector(".button").addEventListener("click", function (){
+        getQ();
+    })
+</script>
+</body>
+</html>
