@@ -18,18 +18,21 @@ public class GenresResource {
     @Inject
     Model model;
 
-/*    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Collection<Genre> getGenres() {
-        return model.getGenresCollection();
-    }*/
-
     @GET
     @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Collection<Genre> getGenres() {
+
+        return model.getGenresCollection();
+    }
+
+    /*@GET
+
     @Produces(MediaType.APPLICATION_JSON)
     public Response get() {
         Response.ResponseBuilder response = Response.ok(model.getGenresCollection());
         response.encoding("UTF-8");
+        response.type(MediaType.APPLICATION_JSON);
         return response.build();
-    }
+    }*/
 }

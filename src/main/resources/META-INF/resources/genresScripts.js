@@ -1,22 +1,23 @@
 function refreshTable(){
-    fetch("http://localhost:8080/genres", {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        },
+    var request = new XMLHttpRequest()
+    var url= "http://localhost:8080/genres";
+    request.onreadystatechange = function (){
+        var myArr = JSON.parse(this.responseText);
+        var outputHTML = "";
+        for (var i =0;i<myArr.length;i++) {
+            outputHTML+="<tr>" +
+                "<td>" +
+                myArr[i]['name'] +
+                "</td>" +
+                "</tr>";
+        }
+        document.getElementById("genresTable").innerHTML=outputHTML;
 
-    })
-        .then((response) => {
-            var outputHTML = "";
-            for (const genre in response.json()) {
-               outputHTML+="<tr>" +
-                   "<td>" +
-                   genre['name'] +
-                   "</td>" +
-                   "</tr>";
-            }
-            document.getElementById("genresTable").innerHTML=outputHTML;
-        })
+    }
+    request.open("GET",url)
+    request.setRequestHeader('Content-Type','application/json')
+    request.send()
+
 }
 
 function addGenre(){
