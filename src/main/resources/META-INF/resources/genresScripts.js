@@ -9,12 +9,20 @@ function refreshTable(){
         .then((response) => {
             var outputHTML = "";
             for (const genre in response.json()) {
-               outputHTML+="<tr> " +
+               outputHTML+="<tr>" +
                    "<td>" +
                    genre['name'] +
                    "</td>" +
                    "</tr>";
             }
-            document.getElementById("genresTable").innerHTML =outputHTML;
+            document.getElementById("genresTable").innerHTML=outputHTML;
         })
+}
+
+function addGenre(){
+
+}
+
+function deleteGenre(){
+
 }

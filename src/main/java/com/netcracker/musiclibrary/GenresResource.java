@@ -25,6 +25,7 @@ public class GenresResource {
     }*/
 
     @GET
+    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public Response get() {
         Response.ResponseBuilder response = Response.ok(model.getGenresCollection());
