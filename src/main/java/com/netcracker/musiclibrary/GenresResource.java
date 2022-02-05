@@ -1,14 +1,13 @@
 package com.netcracker.musiclibrary;
 
+import com.netcracker.musiclibrary.controller.Controller;
 import com.netcracker.musiclibrary.data.Genre;
 import com.netcracker.musiclibrary.model.Model;
 import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Collection;
@@ -26,13 +25,20 @@ public class GenresResource {
         return model.getGenresCollection();
     }
 
-    /*@GET
+    @DELETE
+    @Path("/removeGenres/{namesGenres}")
+    public Response removeGenre(@PathParam("namesGenres") String namesGenres){
+        String[] nameArr = namesGenres.split(",");
+        for (String nameGenre : nameArr){
+            model.removeGenre(model.getGenre(nameGenre));
+        }
+        return Response.status(200).build();
+    }
 
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response get() {
-        Response.ResponseBuilder response = Response.ok(model.getGenresCollection());
-        response.encoding("UTF-8");
-        response.type(MediaType.APPLICATION_JSON);
-        return response.build();
-    }*/
+    @POST
+    @Path("/addGenres/{nameGenre}")
+    public Response addGenre(@PathParam("nameGenre") String nameGenre){
+        model.addGenre(new Controller(model).createGenre(nameGenre));
+        return Response.status(200).build();
+    }
 }
