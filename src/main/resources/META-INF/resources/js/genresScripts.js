@@ -1,4 +1,5 @@
 document.onload = refreshTable()
+//document.addEventListener("mousedown",checkFormOnWork())
 
 function refreshTable(){
     var url= "http://localhost:8080/genres";
@@ -12,16 +13,30 @@ function refreshTable(){
         var outputHTML = "";
         for (var i = 0; i < data.length; i++) {
             outputHTML += "<tr>" +
-                `<td><input type="checkbox" id="${data[i]['name']}"/><label for="nameGenre">${data[i]['name']}</label></td>`
+                `<td><label><input type="checkbox" id="${data[i]['name']}"/>${data[i]['name']}</label></td>`
                 + "</tr>";
         }
         document.getElementById("genresData").innerHTML=outputHTML;
     })
 }
 
+
+function checkFormOnWork(event){
+    //1) Проверяем на отрытую форму. Если да, проверяем дальше
+    //2) Проверяем на место нажатия. Если это форма - ничего, иначе
+    //      Скрываем форму, и очищаем её поля
+    //if (!isFormHidden()) {
+    //    if (event.target.id !== 'addGenreFormID') {
+    //        setFormAddGenreHiden();
+    //        event.stopPropagation();
+    //    }
+    //}
+}
+
 function getFormAddGenre(){
     document.forms.namedItem('addGenreForm').hidden = false;
 }
+
 function addGenre(){
     var url= "http://localhost:8080/genres/addGenres/";
     url+=document.getElementById("nameGenreInput").value
@@ -41,4 +56,12 @@ function deleteGenre(){
     fetch(url,{
         method:'DELETE'
     }).then(function (res){refreshTable()})
+}
+
+function isFormHidden(){
+    return document.forms.namedItem('addGenreForm').hidden;
+}
+function setFormAddGenreHiden(){
+    document.forms.namedItem('addGenreForm').hidden = true;
+    document.getElementById("nameGenreInput").innerText = "";
 }

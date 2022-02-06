@@ -1,0 +1,64 @@
+#genresTable{
+    margin: 5px;
+    background-color: chocolate;
+    width: 40%;
+    min-width: fit-content;
+    border-radius: 6px;
+}
+td{
+    background-color: white;
+}
+.tableHeader{
+    text-align: left;
+    font-weight: bold;
+}
+
+.field{
+    margin: 6pt;
+    size: auto;
+}
+
+#addGenreFormID{
+    width: fit-content;
+    margin: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 6px;
+    border-color: chocolate;
+
+}
+
+#addGenreInnerDiv{
+    display: flex;
+    align-items: center;
+    margin: 2px;
+}
+
+.genresProcessingBtn{
+    width: 2em;
+    height: 2em;
+    border: 0;
+}
+
+#uploadBtn{
+    background: url(../icons/upload.png);
+    background-size: cover;
+    margin: 5px;
+}
+
+#addBtn{
+    background: url(../icons/add.png);
+    background-size: cover;
+
+}
+
+#deleteBtn{
+    background: url(../icons/delete.png);
+    background-size: cover;
+}
+
+#refreshBtn{
+    background: url(../icons/refresh.png);
+    background-size: cover;
+}
+
