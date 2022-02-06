@@ -1,22 +1,22 @@
 document.onload = refreshTable()
 
 function refreshTable(){
-    var request = new XMLHttpRequest()
     var url= "http://localhost:8080/genres";
-    request.onreadystatechange = function (){
-        var myArr = JSON.parse(this.responseText);
+    fetch(url,{
+        method: 'GET',
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }).then(response => response.json())
+        .then(data =>{
         var outputHTML = "";
-        for (var i =0;i<myArr.length;i++) {
-            outputHTML+="<tr>"+
-                `<td><input type="checkbox" id="${myArr[i]['name']}"/><label for="costDress">${myArr[i]['name']}</label></td>`
-                +"</tr>";
+        for (var i = 0; i < data.length; i++) {
+            outputHTML += "<tr>" +
+                `<td><input type="checkbox" id="${data[i]['name']}"/><label for="nameGenre">${data[i]['name']}</label></td>`
+                + "</tr>";
         }
         document.getElementById("genresData").innerHTML=outputHTML;
-
-    }
-    request.open("GET",url)
-    request.setRequestHeader('Content-Type','application/json')
-    request.send()
+    })
 }
 
 function getFormAddGenre(){
