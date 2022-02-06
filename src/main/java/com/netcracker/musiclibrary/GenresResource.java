@@ -17,6 +17,9 @@ public class GenresResource {
     @Inject
     Model model;
 
+    @Inject
+    Controller controller;
+
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
@@ -38,7 +41,7 @@ public class GenresResource {
     @POST
     @Path("/addGenres/{nameGenre}")
     public Response addGenre(@PathParam("nameGenre") String nameGenre){
-        model.addGenre(new Controller(model).createGenre(nameGenre));
+        model.addGenre(controller.createGenre(nameGenre));
         return Response.status(200).build();
     }
 }
