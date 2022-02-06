@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.Collection;
 
-@Path("/myprog")
+@Path("/")
 public class GreetingResource {
     @Inject
     Model model;
@@ -28,6 +28,5 @@ public class GreetingResource {
     public Collection<Track> getTracks() {
         return model.getTracksCollection();
     }
-
 
 }
