@@ -1,12 +1,13 @@
 #genresTable{
     margin: 5px;
     background-color: chocolate;
-    width: 40%;
+    width: 30%;
     min-width: fit-content;
     border-radius: 6px;
 }
 td{
     background-color: white;
+    border-radius: 6px;
 }
 .tableHeader{
     text-align: left;
@@ -44,6 +45,11 @@ td{
     background: url(../icons/upload.png);
     background-size: cover;
     margin: 5px;
+}
+
+#closeBtn{
+    background: url(../icons/close.png);
+    background-size: cover;
 }
 
 #addBtn{

@@ -1,5 +1,4 @@
 document.onload = refreshTable()
-//document.addEventListener("mousedown",checkFormOnWork())
 
 function refreshTable(){
     var url= "http://localhost:8080/genres";
@@ -20,18 +19,6 @@ function refreshTable(){
     })
 }
 
-
-function checkFormOnWork(event){
-    //1) Проверяем на отрытую форму. Если да, проверяем дальше
-    //2) Проверяем на место нажатия. Если это форма - ничего, иначе
-    //      Скрываем форму, и очищаем её поля
-    //if (!isFormHidden()) {
-    //    if (event.target.id !== 'addGenreFormID') {
-    //        setFormAddGenreHiden();
-    //        event.stopPropagation();
-    //    }
-    //}
-}
 
 function getFormAddGenre(){
     document.forms.namedItem('addGenreForm').hidden = false;
@@ -58,10 +45,7 @@ function deleteGenre(){
     }).then(function (res){refreshTable()})
 }
 
-function isFormHidden(){
-    return document.forms.namedItem('addGenreForm').hidden;
-}
 function setFormAddGenreHiden(){
     document.forms.namedItem('addGenreForm').hidden = true;
-    document.getElementById("nameGenreInput").innerText = "";
+    document.getElementById("nameGenreInput").value = "";
 }
