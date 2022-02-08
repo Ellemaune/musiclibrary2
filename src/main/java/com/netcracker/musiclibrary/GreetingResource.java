@@ -29,10 +29,4 @@ public class GreetingResource {
         return model.getTracksCollection();
     }
 
-    @GET
-    @Path("/genres")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Collection<Genre> getGenres() {
-        return model.getGenresCollection();
-    }
 }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Genres Processing</title>
+    <script type="text/javascript" src="/js/genresScripts.js" ></script>
+    <link rel="stylesheet" href="/css/genresStyles.css">
+</head>
+<body>
+<h2 style="margin: 5px">Genres Collection</h2>
+<form name="addGenreForm" id="addGenreFormID" hidden>
+    <div id = addGenreInnerDiv>
+        <label id="labelNameGenreInput">Введите имя <input type="text" id="nameGenreInput"/></label>
+        <input type="button" class="genresProcessingBtn" id="uploadBtn" onclick="addGenre()">
+        <input type="button" class="genresProcessingBtn" id="closeBtn" onclick="setFormAddGenreHiden()">
+    </div>
+</form>
+<input type="button" class="genresProcessingBtn" id="refreshBtn" onclick="refreshTable()"/>
+<input type="button" class="genresProcessingBtn" id="addBtn" onclick="getFormAddGenre()"/>
+<input type="button" class="genresProcessingBtn" id="deleteBtn" onclick="deleteGenre()"/>
+<div>
+    <table id="genresTable">
+       <thead class = "tableHeader">
+           <tr>
+               <th>Жанры</th>
+           </tr>
+       </thead>
+        <tbody id="genresData">
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
