@@ -1,6 +1,5 @@
 package com.netcracker.musiclibrary;
 
-import com.netcracker.musiclibrary.controller.Controller;
 import com.netcracker.musiclibrary.data.Genre;
 import com.netcracker.musiclibrary.data.Track;
 import com.netcracker.musiclibrary.model.Model;
@@ -10,9 +9,13 @@ import org.jboss.resteasy.plugins.providers.multipart.MultipartFormDataInput;
 import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.*;
-import java.io.*;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.StreamingOutput;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -57,8 +60,8 @@ public class FileResource {
             outputStream.flush();
         };
         Response.ResponseBuilder response = Response.ok(output);
-        response.header("Content-Disposition", "file");
+        response.header("Content-Disposition", "file.txt");
         response.encoding("UTF-8");
-        return response.build();
+        return response.status(200).build();
     }
 }
