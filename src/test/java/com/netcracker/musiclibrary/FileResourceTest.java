@@ -14,8 +14,10 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
+import static com.netcracker.musiclibrary.matchers.IsWithName.withName;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 
 @QuarkusTest
@@ -35,6 +37,6 @@ public class FileResourceTest {
         ArrayList<Genre> genres = (ArrayList<Genre>) objectInputStream.readObject();
         objectInputStream.close();
 
-        assertThat(genres, hasItem(model.getGenre("Хой")));
+        assertThat(model.getGenresCollection(), hasItems(withName("Хой")));
     }
 }
