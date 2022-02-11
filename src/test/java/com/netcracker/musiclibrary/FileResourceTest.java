@@ -24,10 +24,8 @@ public class FileResourceTest {
     Model model;
     @Test
     public void fileDownloadTest() throws IOException, ClassNotFoundException {
-        Genre testGenre = new Genre("Хой");
-        model.addGenre(testGenre);
-        RestAssured.given().contentType(MediaType.TEXT_PLAIN).body(testGenre.name())
-                .when().post("/genres/addGenres/");
+        RestAssured.given()
+                .when().post("/genres/addGenres/Хой");
 
         InputStream inputStream = given()
           .when()
@@ -37,6 +35,6 @@ public class FileResourceTest {
         ArrayList<Genre> genres = (ArrayList<Genre>) objectInputStream.readObject();
         objectInputStream.close();
 
-        assertThat(genres, hasItem(testGenre));
+        assertThat(genres, hasItem(model.getGenre("Хой")));
     }
 }
