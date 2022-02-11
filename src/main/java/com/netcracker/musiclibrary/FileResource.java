@@ -31,7 +31,7 @@ public class FileResource {
     @POST
     @Path("/upload")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response uploadFile(MultipartFormDataInput input) {
+    public void uploadFile(MultipartFormDataInput input) {
         Map<String, List<InputPart>> uploadForm = input.getFormDataMap();
         List<InputPart> inputParts = uploadForm.get("attachment");
         for (InputPart inputPart : inputParts) {
@@ -45,7 +45,6 @@ public class FileResource {
                 e.printStackTrace();
             }
         }
-        return null;
     }
 
     @GET
