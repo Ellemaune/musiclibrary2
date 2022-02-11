@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tracks Processing</title>
+    <script type="text/javascript" src="/js/tracksScripts.js" ></script>
+    <link rel="stylesheet" href="/css/tracksStyles.css">
+</head>
+<body>
+<h2 style="margin: 5px"> Tracks Collection</h2>
+<form name="addTrackForm" id="addTrackFormID" hidden>
+    <div id = addTrackInnerDiv>
+        <label id="labelNameTrackInput">Введите имя <input type="text" id="nameTrackInput"/></label>
+        <label id="labelSingerTrackInput">Введите певца <input type="text" id="singerTrackInput"/></label>
+        <label id="labelNameAlbumTrackInput">Введите Альбом <input type="text" id="nameAlbumTrackInput"/></label>
+        <label id="labelRecordLenghtTrackInput">Введите длительность <input type="text" id="recordLenghtTrackInput"/></label>
+        <label id="labelGenreTrackInput">Введите жанр <input type="text" id="GenreOfTrackInput"/></label>
+        <input type="button" class="tracksProcessingBtn" id="uploadBtn" onclick="addTrack()">
+        <input type="button" class="tracksProcessingBtn" id="closeBtn" onclick="setFormAddTrackHiden()">
+    </div>
+</form>
+<input type="button" class="tracksProcessingBtn" id="refreshBtn" onclick="refreshTable()"/>
+<input type="button" class="tracksProcessingBtn" id="addBtn" onclick="getFormAddTrack()"/>
+<input type="button" class="tracksProcessingBtn" id="deleteBtn" onclick="deleteTrack()"/>
+<div>
+    <table id="tracksTable">
+        <thead class = "tableHeader">
+        <tr>
+            <th>Треки</th>
+        </tr>
+        </thead>
+        <tbody id="tracksData">
+
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

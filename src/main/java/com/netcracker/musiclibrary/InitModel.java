@@ -29,6 +29,7 @@ public class InitModel {
         for (int i = 4; i < 9; i++){
             tracks.add(new Track("Песня" + i, "Певец" + i, "Альбом" + i, time, genres.get(i % 4)));
         }
+
         this.model = model;
         this.model.setTracksCollection(tracks);
         this.model.setGenresCollection(genres);
