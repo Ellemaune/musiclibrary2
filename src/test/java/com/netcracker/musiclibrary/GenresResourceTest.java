@@ -5,6 +5,8 @@ import com.netcracker.musiclibrary.model.Model;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
@@ -20,6 +22,12 @@ import static org.hamcrest.Matchers.*;
 public class GenresResourceTest {
     @Inject
     Model model;
+
+    @BeforeEach
+    public void cleanModel(){
+
+        new InitModel(this.model);
+    }
 
     @Test
     public void getGenresTest() {

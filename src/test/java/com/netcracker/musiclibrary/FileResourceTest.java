@@ -5,7 +5,10 @@ import com.netcracker.musiclibrary.data.Track;
 import com.netcracker.musiclibrary.model.Model;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
@@ -24,6 +27,13 @@ import static org.hamcrest.core.IsCollectionContaining.hasItem;
 public class FileResourceTest {
     @Inject
     Model model;
+
+    @BeforeEach
+    public void cleanModel(){
+
+        new InitModel(this.model);
+    }
+
     @Test
     public void fileDownloadTest() throws IOException, ClassNotFoundException {
         RestAssured.given()
@@ -37,6 +47,6 @@ public class FileResourceTest {
         ArrayList<Genre> genres = (ArrayList<Genre>) objectInputStream.readObject();
         objectInputStream.close();
 
-        assertThat(model.getGenresCollection(), hasItems(withName("Хой")));
+        assertThat(genres, hasItems(withName("Хой")));
     }
 }
