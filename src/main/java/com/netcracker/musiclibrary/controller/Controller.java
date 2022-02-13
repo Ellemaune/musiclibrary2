@@ -28,11 +28,12 @@ public class Controller {
      * Method for adding a track to an array
      * @see Track
      */
-    public boolean createTrack(String name, String singer,
+    public Track createTrack(String name, String singer,
                                String album, Duration recordLength, String nameOfGenre){
         Genre genre = createGenre(nameOfGenre);
         Track track = new Track(name, singer, album, recordLength, genre);
-        return model.addTrack(track);
+        model.addTrack(track);
+        return track;
     }
     /**
      * Method for adding genre to array

@@ -43,18 +43,9 @@ public class TracksResource {
     @Path("/addTracks/{nameTrack}")
     public Response addTrack(@PathParam("nameTrack") String paramTrack){
         String[] nameArr = paramTrack.split(",");
-       // model.addTrack(controller.createTrack(nameArr[0],nameArr[1],nameArr[2],Duration.ofSeconds(Long.parseLong(nameArr[3])),nameArr[4]));
-        // реализация через модель как У Ани в GenresResource  41 строка  - не получилась. Функция булиан
-        //проблема с  model.addTrack. Если есть идея - был бы рад услышать.
+        model.addTrack(controller.createTrack(nameArr[0], nameArr[1], nameArr[2], Duration.ofSeconds(Long.parseLong(nameArr[3])), nameArr[4]));
+        // для возможности подобной реализации в Controller был изменен возвращаемый тип у метода createTrack
 
-        if(controller.createTrack(nameArr[0],nameArr[1],nameArr[2],Duration.ofSeconds(Long.parseLong(nameArr[3])),nameArr[4]))
-        {
-            Genre genre = new Genre(nameArr[4]);
-            //model.addGenre(genre);
-            model.addGenre(controller.createGenre(genre.name()));
-            Track track = new Track(nameArr[0],nameArr[1],nameArr[2],Duration.ofSeconds(Long.parseLong(nameArr[3])),genre);
-            model.addTrack(track);
-        }
         return Response.status(200).build();
     }
 }
