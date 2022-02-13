@@ -7,6 +7,8 @@ import javax.inject.Singleton;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+
 @Singleton
 /**
  * Model class - a class containing references to arrays of Track and Genre objects and methods of working with them
@@ -139,15 +141,21 @@ public class Model {
     }
 
     /**
-     * Genre Removal Method
+     * Genre Removal Method with cascade removing of Tracks
      * @see Genre
      * @return - deletion notification
      */
     public boolean removeGenre(Genre genre){
-        if(getGenresCollection().remove(genre)){
-            return true;
-        }
-        return false;
+       Iterator<Track> iter = tracks.iterator();
+       while(iter.hasNext()){
+           if(iter.next().genre() == genre){
+               iter.remove();
+           }
+       }
+       if(genres.remove(genre)){
+           return true;
+       }
+       return false;
     }
 
     /**
