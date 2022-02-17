@@ -8,8 +8,7 @@ import java.time.Duration;
 
 public class IsWithRecordLength extends TypeSafeMatcher<Track>  {
     private Duration recordLength;
-    Duration v;
-    int a = Duration.ZERO.toSecondsPart();
+
     public IsWithRecordLength(Duration recordLength){
         this.recordLength = recordLength;
     }
