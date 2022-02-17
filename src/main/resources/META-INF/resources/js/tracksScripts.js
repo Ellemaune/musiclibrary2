@@ -33,9 +33,9 @@ function getFormAddTrack(){
 function addTrack(){
     var url= "http://localhost:8080/tracks/addTracks/";
     url+=document.getElementById("nameTrackInput").value +","
-    + document.getElementById("singerTrackInput").value  +","
-    + document.getElementById("nameAlbumTrackInput").value  +","
-    + document.getElementById("recordLenghtTrackInput").value  +","
+    + document.getElementById("singerTrackInput").value +","
+    + document.getElementById("nameAlbumTrackInput").value +","
+    + document.getElementById("recordLengthTrackInput").value +","
     + document.getElementById("GenreOfTrackInput").value
     fetch(url,{
         method:'POST'
@@ -51,7 +51,7 @@ function deleteTrack(){
         }
     )
     fetch(url,{
-        method:'DELETE' //**404
+        method:'DELETE'
     }).then(function (res){refreshTable()})
 }
 

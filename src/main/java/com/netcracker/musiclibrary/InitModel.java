@@ -25,9 +25,10 @@ public class InitModel {
         genres.add(new Genre("Шансон"));
         genres.add(new Genre("Шанси"));
 
-        Duration time = Duration.ofSeconds(200);
+        Duration time ;
         for (int i = 4; i < 9; i++){
-            tracks.add(new Track("Песня" + i, "Певец" + i, "Альбом" + i, time, genres.get(i % 4)));
+            time = Duration.ofSeconds(i*100);
+            tracks.add(new Track("Песня" + i, "Певец" + i, "Альбом" + i, time , genres.get(i % 4)));
         }
         this.model = model;
         this.model.setTracksCollection(tracks);

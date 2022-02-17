@@ -40,8 +40,8 @@ public class TracksResource {
         return Response.status(200).build();
     }
     @POST
-    @Path("/addTracks/{nameTrack}")
-    public Response addTrack(@PathParam("nameTrack") String paramTrack){
+    @Path("/addTracks/{paramTrack}")
+    public Response addTrack(@PathParam("paramTrack") String paramTrack){
         String[] nameArr = paramTrack.split(",");
         model.addTrack(controller.createTrack(nameArr[0], nameArr[1], nameArr[2], Duration.ofSeconds(Long.parseLong(nameArr[3])), nameArr[4]));
         // для возможности подобной реализации в Controller был изменен возвращаемый тип у метода createTrack
