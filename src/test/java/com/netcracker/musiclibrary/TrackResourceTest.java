@@ -48,11 +48,11 @@ public class TrackResourceTest {
                 hasItems(withNameTrack("Песня4")),
                 hasItems(withSinger("Певец4")),
                 hasItems(withAlbum("Альбом4")),
-                hasItems(withRecordLength(Duration.ofSeconds(200))),
-                hasItem(withGenre("Рок"))
+                hasItems(withRecordLength(Duration.ofSeconds(400))),
+                hasItems(withGenre("Рок"))
         ));
     }
-    //@Test
+    @Test
     public void addTracksTest() {
         RestAssured.given()
                 .when().post("/tracks/addTracks/Песня12,Певец12,Альбом12,200,Роккккк")
@@ -63,11 +63,11 @@ public class TrackResourceTest {
                 hasItems(withSinger("Певец12")),
                 hasItems(withAlbum("Альбом12")),
                 hasItems(withRecordLength(Duration.ofSeconds(200))),
-                hasItem(withGenre("Роккккк"))
+                hasItems(withGenre("Роккккк"))
         ));
     }
 
-   // @Test
+    @Test
     public void deleteTracksTest() {
         RestAssured.given()
                 .when().delete("/tracks/removeTracks/Песня5")

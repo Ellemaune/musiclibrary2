@@ -46,6 +46,6 @@ public class TracksResource {
         model.addTrack(controller.createTrack(nameArr[0], nameArr[1], nameArr[2], Duration.ofSeconds(Long.parseLong(nameArr[3])), nameArr[4]));
         // для возможности подобной реализации в Controller был изменен возвращаемый тип у метода createTrack
 
-        return Response.status(200).build();
+        return Response.status(201).build();
     }
 }
