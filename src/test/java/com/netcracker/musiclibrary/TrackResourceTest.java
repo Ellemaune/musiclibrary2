@@ -48,7 +48,7 @@ public class TrackResourceTest {
                 hasItems(withNameTrack("Песня4")),
                 hasItems(withSinger("Певец4")),
                 hasItems(withAlbum("Альбом4")),
-                hasItems(withRecordLength(Duration.ofSeconds(200))),
+                hasItems(withRecordLength(Duration.ofSeconds(400))),
                 hasItem(withGenre("Рок"))
         ));
     }
@@ -67,7 +67,7 @@ public class TrackResourceTest {
         ));
     }
 
-   // @Test
+   /* @Test
     public void deleteTracksTest() {
         RestAssured.given()
                 .when().delete("/tracks/removeTracks/Песня5")
@@ -83,5 +83,5 @@ public class TrackResourceTest {
         //для точной проверки пришлось в InitModel изменить слегка цикл создания жанров,
         //А если быть точным, то пришлось изменить поведение переменной time со статичного на изменяемого в цикле
     }
-
+*/
 }
