@@ -89,7 +89,7 @@
         <directory>${project.basedir}/musiclibrary-client/dist/musiclibrary-client</directory>
         <filtering>false</filtering>
         <includes>
-          <include>/*.*</include>
+          <include>**/*.*</include>
         </includes>
         <targetPath>META-INF/resources</targetPath>
       </resource>
@@ -97,7 +97,7 @@
         <directory>src/main/resources</directory>
         <filtering>false</filtering>
         <includes>
-          <include>/*.*</include>
+          <include>**/*.*</include>
         </includes>
       </resource>
     </resources>
