@@ -1,4 +1,5 @@
-.top-bar{
-  background-color: #FFD99F;
-  overflow: hidden;
+.example-spacer {
+  flex: 1 1 auto;
 }
+
+

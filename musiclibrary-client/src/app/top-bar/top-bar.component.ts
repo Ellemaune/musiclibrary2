@@ -1,4 +1,5 @@
 import {Component} from "@angular/core";
+import {FileService} from "../file.service";
 
 
 @Component({
@@ -8,5 +9,14 @@ import {Component} from "@angular/core";
 })
 
 export class TopBarComponent {
+
+  constructor(
+    private fileService: FileService
+  ) {}
+
+  download(){
+
+    this.fileService.downloadFile();
+  }
 
 }

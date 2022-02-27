@@ -1,3 +1,15 @@
-<div class ='top-bar'>
-  <h1>musiclibrary</h1>
-</div>
+<mat-toolbar>
+  <span>musiclibrary</span>
+  <span class="example-spacer"></span>
+  <button mat-button color ="white">
+    upload
+    <mat-icon>upload</mat-icon>
+  </button>
+  <button mat-button color ="white" (click)="download()">
+    download
+    <mat-icon>download</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+
