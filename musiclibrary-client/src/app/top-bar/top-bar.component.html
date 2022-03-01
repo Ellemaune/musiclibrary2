@@ -1,3 +1,18 @@
-<div class ='top-bar'>
-  <h1>musiclibrary</h1>
-</div>
+<mat-toolbar>
+  <span>musiclibrary</span>
+  <span class="example-spacer"></span>
+  <button mat-button color ="white" (click)="fileSelectInputDialog.click()">
+    upload
+    <mat-icon>upload</mat-icon>
+  </button>
+  <div class = 'input-hidden'>
+    <input #fileSelectInputDialog   type="file" (change)="upload($event)"  multiple/>
+  </div>
+  <button mat-button color ="white" (click)="download()">
+    download
+    <mat-icon>download</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+
