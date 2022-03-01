@@ -1,6 +1,5 @@
-import {Component} from "@angular/core";
+import {Component, ElementRef, ViewChild} from "@angular/core";
 import {FileService} from "../file.service";
-
 
 @Component({
   selector: 'app-top-bar',
@@ -9,13 +8,16 @@ import {FileService} from "../file.service";
 })
 
 export class TopBarComponent {
-
   constructor(
-    private fileService: FileService
+    private fileService: FileService,
   ) {}
 
-  download(){
+  upload(event: any){
+    let fileList: FileList = event.target.files;
+    this.fileService.uploadFile(fileList);
+  }
 
+  download(){
     this.fileService.downloadFile();
   }
 
