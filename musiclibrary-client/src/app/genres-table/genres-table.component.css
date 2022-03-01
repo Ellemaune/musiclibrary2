@@ -1,0 +1,11 @@
+table{
+  width: 20%;
+  margin-block: 20px;
+}
+
+.table-area{
+  margin-inline: 20px;
+  margin-block: 20px;
+}
+
+

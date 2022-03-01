@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
 import { genres } from '../genres';
+import { Genre } from "../genres";
 
 @Component({
   selector: 'app-genres-table',
