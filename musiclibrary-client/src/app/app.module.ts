@@ -9,6 +9,7 @@ import { TopBarComponent} from "./top-bar/top-bar.component";
 import { GenresTableComponent } from './genres-table/genres-table.component';
 
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
@@ -25,7 +26,7 @@ import {MatInputModule} from '@angular/material/input';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
     MatSliderModule,
     MatToolbarModule,
     MatIconModule,
