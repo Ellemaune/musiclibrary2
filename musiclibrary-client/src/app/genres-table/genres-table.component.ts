@@ -33,11 +33,11 @@ export class GenresTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       // this.genres.push({"name": result});
-      this.genresService.addGenre(result);
-      this.refreshTable();
+      this.genresService.addGenre(result).subscribe(()=>{this.refreshTable()});
+
       console.log('The dialog was closed. genres: ' + JSON.stringify(this.genres));
     });
-
+    ;
   }
 
   // deleteGenre(genreName: string): void{
