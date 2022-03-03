@@ -39,7 +39,7 @@ public class GenresResource {
     }
 
     @POST
-    @Path("/addGenres/{nameGenre}")
+    @Path("/addGenre/{nameGenre}")
     public Response addGenre(@PathParam("nameGenre") String nameGenre){
         model.addGenre(controller.createGenre(nameGenre));
         return Response.status(201).build();

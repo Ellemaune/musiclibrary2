@@ -16,12 +16,17 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatTableModule} from "@angular/material/table";
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatInputModule} from '@angular/material/input';
+import { AddingDialogComponent } from './genres-table/genres-table.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     TopBarComponent,
-    GenresTableComponent
+    GenresTableComponent,
+    AddingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +39,10 @@ import {MatInputModule} from '@angular/material/input';
     HttpClientModule,
     MatTableModule,
     MatCheckboxModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

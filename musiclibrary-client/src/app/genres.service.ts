@@ -10,13 +10,20 @@ export interface Genre {
 })
 export class GenresService {
 
-  genres: Genre[] = [];
-
   constructor(private http: HttpClient) {
   }
 
   getGenres(){
     return this.http.get('/genres');
   }
+
+  addGenre(additionalUrl: string){
+    console.log('URL: ' + additionalUrl);
+    return this.http.post<any>('/genres/addGenre/' + additionalUrl, null);
+  }
+
+  // deleteGenre(additionalURL: string){
+  //   return this.http.delete('/genres/removeGenres/' + additionalURL);
+  // }
 
 }
