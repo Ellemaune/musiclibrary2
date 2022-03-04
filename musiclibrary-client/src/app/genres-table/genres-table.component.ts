@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
-import { Genre } from '../genres.service';
-import { GenresService } from '../genres.service';
+import { Genre } from '../services/genres.service';
+import { GenresService } from '../services/genres.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {MatTable} from "@angular/material/table";
 

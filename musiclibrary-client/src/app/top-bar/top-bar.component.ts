@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from "@angular/core";
-import {FileService} from "../file.service";
+import {FileService} from "../services/file.service";
 
 @Component({
   selector: 'app-top-bar',
