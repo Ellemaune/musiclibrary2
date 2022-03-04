@@ -43,7 +43,7 @@ public class GenresResourceTest {
     @Test
     public void addGenresTest() {
         RestAssured.given()
-                .when().post("/genres/addGenres/Поп")
+                .when().post("/genres/addGenre/Поп")
                 .then().statusCode(201);
 
         assertThat(model.getGenresCollection(), hasItems(withName("Поп")));

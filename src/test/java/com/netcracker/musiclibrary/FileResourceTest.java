@@ -40,7 +40,7 @@ public class FileResourceTest {
     @Test
     public void fileDownloadTest() throws IOException, ClassNotFoundException {
         RestAssured.given()
-                .when().post("/genres/addGenres/Хой");
+                .when().post("/genres/addGenre/Хой");
         RestAssured.given()
                 .when().post("/tracks/addTracks/Песня13,Певец13,Альбом13,200,Хоййй")
                 .then().statusCode(201);

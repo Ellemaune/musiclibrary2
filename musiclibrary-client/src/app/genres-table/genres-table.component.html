@@ -1,0 +1,26 @@
+<div class="table-area">
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>SEARCH GENRES...</mat-label>
+    <input matInput [(ngModel)]="substring" (input)="searchBySubstring()">
+  </mat-form-field>
+
+  <table mat-table #genresTable [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell #cellElement *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell  *matHeaderCellDef > Action </th>
+      <td mat-cell *matCellDef="let row" >
+        <button mat-stroked-button color="warn" (click)="deleteGenre(this.row.name)">DELETE</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <button mat-raised-button color="primary" (click)="addGenre()"> ADD GENRE </button>
+</div>
