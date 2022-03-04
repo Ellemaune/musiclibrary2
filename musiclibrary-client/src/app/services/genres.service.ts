@@ -18,12 +18,11 @@ export class GenresService {
   }
 
   addGenre(additionalUrl: string){
-    console.log('URL: ' + additionalUrl);
     return this.http.post<any>('/genres/addGenre/' + additionalUrl, null);
   }
 
-  // deleteGenre(additionalURL: string){
-  //   return this.http.delete('/genres/removeGenres/' + additionalURL);
-  // }
+  deleteGenre(additionalURL: string){
+    return this.http.delete('/genres/removeGenres/' + additionalURL);
+  }
 
 }

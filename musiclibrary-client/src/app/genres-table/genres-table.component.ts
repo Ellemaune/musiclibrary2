@@ -34,23 +34,33 @@ export class GenresTableComponent implements OnInit {
     });
   }
 
-  openAddingDialog(): void {
-    const dialogRef = this.dialog.open(AddingDialogComponent, {
+  addGenre(): void {
+    const dialogRef = this.dialog.open(AddingDialog, {
       width: '300px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.genresService.addGenre(result).subscribe(()=>{this.refreshTable()});
-
-      console.log('The dialog was closed. genres: ' + JSON.stringify(this.genres));
+      if(result){
+        this.genresService.addGenre(result).subscribe(() => {
+          this.refreshTable();
+        });
+      }
     });
-    ;
   }
 
-  // дописать удаление
-  // deleteGenre(genreName: string): void{
-  //   this.genresService.deleteGenre(genreName);
-  // }
+  deleteGenre(genreName: string): void{
+    const dialogRef = this.dialog.open(DeleteDialog, {
+      data: genreName
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.genresService.deleteGenre(genreName).subscribe(() => {
+          this.refreshTable();
+        });
+      }
+    });
+
+  }
 
   refreshTable(): void{
     this.genresService.getGenres().subscribe((data: any) => {
@@ -80,17 +90,20 @@ export class GenresTableComponent implements OnInit {
 
 @Component({
   selector: 'app-adding-dialog',
-  templateUrl: 'adding-dialog.component.html'
+  templateUrl: 'adding-dialog.html'
 })
-export class AddingDialogComponent {
+export class AddingDialog {
   constructor(
-    public dialogRef: MatDialogRef<AddingDialogComponent>,
+    public dialogRef: MatDialogRef<AddingDialog>,
     @Inject(MAT_DIALOG_DATA) public data: string
   ) {}
+}
 
-  onCancelClick(): void {
-    this.dialogRef.close();
+@Component({
+  selector: 'app-delete-dialog',
+  templateUrl: 'delete-dialog.html',
+})
+export class DeleteDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: string){
   }
-
-
 }

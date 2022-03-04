@@ -1,0 +1,5 @@
+<h3 mat-dialog-title>Are you sure to delete genre {{this.data}}?</h3>
+<mat-dialog-actions>
+  <button mat-raised-button color="accent" mat-dialog-close>CANCEL</button>
+  <button mat-raised-button color="warn" [mat-dialog-close]="true">DELETE</button>
+</mat-dialog-actions>
