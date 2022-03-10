@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { TopBarComponent} from "./top-bar/top-bar.component";
 import {DeleteDialog, GenresTableComponent} from './genres-table/genres-table.component';
 import { AddingDialog } from './genres-table/genres-table.component';
+import {TracksTableComponent,TrackDeleteDialog,TrackAddingDialog} from "./tracks-table/tracks-table.component";
 
 import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatToolbarModule} from "@angular/material/toolbar";
@@ -26,7 +27,10 @@ import {FormsModule} from "@angular/forms";
     TopBarComponent,
     GenresTableComponent,
     AddingDialog,
-    DeleteDialog
+    DeleteDialog,
+    TracksTableComponent,
+    TrackDeleteDialog,
+    TrackAddingDialog
   ],
   imports: [
     BrowserModule,

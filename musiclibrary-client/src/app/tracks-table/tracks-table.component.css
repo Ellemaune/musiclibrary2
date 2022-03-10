@@ -1,0 +1,14 @@
+table{
+  width: 70%;
+  margin-block: 20px;
+}
+
+/*i dont like this solution*/
+::ng-deep .mat-form-field-wrapper{
+  margin-bottom: -1.25em;
+}
+
+.table-area{
+  margin-inline: 20px;
+  margin-block: 20px;
+}
