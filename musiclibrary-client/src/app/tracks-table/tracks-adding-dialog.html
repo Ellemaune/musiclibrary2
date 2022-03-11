@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>NEW TRACK ADDING </h1>
+<div>
+  <p>Please, enter a track name</p>
+  <mat-form-field color="primary" class="example-full-width" appearance="fill">
+    <mat-label>new track name...</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+</div>
+<div>
+  <p>Please, enter a singer </p>
+  <mat-form-field color="primary" class="example-full-width" appearance="fill">
+    <mat-label>new singer...</mat-label>
+    <input matInput [(ngModel)]="data.singer">
+  </mat-form-field>
+</div>
+<div>
+  <p>Please, enter a album</p>
+  <mat-form-field color="primary" class="example-full-width" appearance="fill">
+    <mat-label>new album...</mat-label>
+    <input matInput [(ngModel)]="data.album">
+  </mat-form-field>
+</div>
+<div>
+  <p>Please, enter a record length</p>
+  <mat-form-field color="primary" class="example-full-width" appearance="fill">
+    <mat-label>new record length...</mat-label>
+    <input matInput [(ngModel)]="data.recordLength">
+  </mat-form-field>
+</div>
+<div>
+  <p>Please, enter a genre name</p>
+  <mat-form-field color="primary" class="example-full-width" appearance="fill">
+    <mat-label>new genre name...</mat-label>
+    <input matInput [(ngModel)]="data.genre">
+  </mat-form-field>
+</div>
+<p></p>
+<div mat-dialog-actions>
+  <button mat-raised-button color="accent" mat-dialog-close>CANCEL</button>
+  <button mat-raised-button color="primary"  [mat-dialog-close]="data">ADD</button>
+</div>

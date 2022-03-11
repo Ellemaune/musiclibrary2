@@ -3,6 +3,7 @@ import { Track } from '../services/tracks.service';
 import {TracksService} from '../services/tracks.service'
 import {MatTable} from "@angular/material/table";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {FormControl} from "@angular/forms";
 
 
 @Component({
@@ -21,14 +22,14 @@ export  class TracksTableComponent implements  OnInit{
   displayedColumns: string[] = ['name','singer','album','recordLength','genre', 'actions'];
 
   substring: string = '';
+  addingResult: string = '';
   constructor(private tracksService: TracksService, public dialog: MatDialog) {
   }
 
   @ViewChild('tracksTable') tracksTable: MatTable<any> | undefined;
 
   ngOnInit(): void {
-    // заглушка
-    // this.tracks = [{"name":"Песня4","singer":"Песня4","album":"Альбом4","recordLength":"400","genre":"Рок" }];
+
     this.tracksService.getTracks().subscribe((data:any) => {
       this.tracks=data;
       this.dataSource = this.tracks;
@@ -56,14 +57,19 @@ export  class TracksTableComponent implements  OnInit{
     });
   }
 
-  addTrack(): void {
+  addTrack(): void { //
     const dialogRef = this.dialog.open(TrackAddingDialog, {
       width: '300px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.tracksService.addTrack(result).subscribe(() => {
+      if(result){//тут некий набор инструкций для даты (резалт) сделать строку
+        this.addingResult = result.data.name
+                    + ',' + result.data.singer
+                    + ',' + result.data.album
+                    + ',' + result.data.recordLength
+                    + ',' + result.data.genre;
+        this.tracksService.addTrack(this.addingResult).subscribe(() => {
           this.refreshTable();
         });
       }
@@ -92,18 +98,9 @@ export  class TracksTableComponent implements  OnInit{
   templateUrl: 'tracks-adding-dialog.html'
 })
 export class TrackAddingDialog {
-  constructor(
+   constructor(
     public dialogRef: MatDialogRef<TrackAddingDialog>,
     @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogData) {}
-}
-
-@Component({
-  selector: 'app-delete-dialog',
-  templateUrl: 'tracks-delete-dialog.html',
-})
-export class TrackDeleteDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: ConfirmDialogData){
-  }
 }
 export interface ConfirmDialogData {
   name: string,
@@ -111,4 +108,14 @@ export interface ConfirmDialogData {
   album: string,
   recordLength: string,
   genre: string
+
 }
+@Component({
+  selector: 'app-delete-dialog',
+  templateUrl: 'tracks-delete-dialog.html',
+})
+export class TrackDeleteDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: string){
+  }
+}
+
