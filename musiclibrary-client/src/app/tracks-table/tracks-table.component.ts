@@ -3,7 +3,6 @@ import { Track } from '../services/tracks.service';
 import {TracksService} from '../services/tracks.service'
 import {MatTable} from "@angular/material/table";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {FormControl} from "@angular/forms";
 
 
 @Component({
@@ -22,7 +21,14 @@ export  class TracksTableComponent implements  OnInit{
   displayedColumns: string[] = ['name','singer','album','recordLength','genre', 'actions'];
 
   substring: string = '';
+
   addingResult: string = '';
+  name: string= '';
+  singer: string= '';
+  album: string= '';
+  recordLength: string= '';
+  genre: string= '';
+
   constructor(private tracksService: TracksService, public dialog: MatDialog) {
   }
 
@@ -59,16 +65,22 @@ export  class TracksTableComponent implements  OnInit{
 
   addTrack(): void { //
     const dialogRef = this.dialog.open(TrackAddingDialog, {
-      width: '300px'
+      width: '300px',
+      data: {name: this.name, singer: this.singer, album: this.album, recordLength: this.recordLength, genre: this.genre}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){//тут некий набор инструкций для даты (резалт) сделать строку
-        this.addingResult = result.data.name
-                    + ',' + result.data.singer
-                    + ',' + result.data.album
-                    + ',' + result.data.recordLength
-                    + ',' + result.data.genre;
+      if(result){
+        this.name = result.name;
+        this.singer = result.singer;
+        this.album = result.album;
+        this.recordLength = result.recordLength;
+        this.genre = result.genre;
+        this.addingResult = this.name
+                    + ',' + this.singer
+                    + ',' + this.album
+                    + ',' + this.recordLength
+                    + ',' + this.genre;
         this.tracksService.addTrack(this.addingResult).subscribe(() => {
           this.refreshTable();
         });
