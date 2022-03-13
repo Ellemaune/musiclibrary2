@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from "@angular/common/http";
+import { StoreService } from "./store.service";
 
 export interface Track {
   name: string;
@@ -14,7 +15,7 @@ export interface Track {
 })
 export class TracksService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private store: StoreService) {
   }
 
   getTracks(){

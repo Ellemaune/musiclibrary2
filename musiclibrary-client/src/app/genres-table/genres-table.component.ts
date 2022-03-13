@@ -2,7 +2,8 @@ import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import { Genre } from '../services/genres.service';
 import { GenresService } from '../services/genres.service';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {MatTable} from "@angular/material/table";
+import { MatTable, MatTableDataSource } from "@angular/material/table";
+import { StoreService } from "../services/store.service";
 
 @Component({
   selector: 'app-genres-table',
@@ -12,25 +13,21 @@ import {MatTable} from "@angular/material/table";
 })
 export class GenresTableComponent implements OnInit {
 
-  genres: Genre[] = [];
-  foundGenres: Genre[] = [];
-
-  dataSource: Genre[] = [];
   displayedColumns: string[] = ['name', 'actions'];
+  dataSource = new MatTableDataSource<Genre>([]);
 
   substring: string = '';
 
   @ViewChild('genresTable') genresTable: MatTable<any> | undefined;
 
-  constructor(private genresService: GenresService, public dialog: MatDialog) { }
+  constructor(private genresService: GenresService, private store: StoreService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     // заглушка
     // this.genres = [{"name" : "Рок"}, {"name" : "Поп"}, {"name" : "Шансон"}];
 
-    this.genresService.getGenres().subscribe((data: any) => {
-      this.genres=data;
-      this.dataSource = this.genres;
+    this.store.ganres.subscribe((data: Genre[]) => {
+      this.dataSource.data = data;
     });
   }
 
@@ -41,9 +38,7 @@ export class GenresTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this.genresService.addGenre(result).subscribe(() => {
-          this.refreshTable();
-        });
+        this.genresService.addGenre(result);
       }
     });
   }
@@ -54,37 +49,16 @@ export class GenresTableComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this.genresService.deleteGenre(genreName).subscribe(() => {
-          this.refreshTable();
-        });
+        this.genresService.deleteGenre(genreName);
       }
     });
 
   }
 
-  refreshTable(): void{
-    this.genresService.getGenres().subscribe((data: any) => {
-      this.genres=data;
-      this.dataSource = this.genres;
-      this.genresTable?.renderRows();
-    });
-  }
-
-  searchBySubstring(){
-    this.foundGenres = [];
-    if(this.substring != ''){
-      this.genres.forEach((item) => {
-        if(item.name.toLowerCase().search(this.substring.toLowerCase()) != -1){
-          this.foundGenres.push(item);
-        }
-      })
-      this.dataSource = this.foundGenres;
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
     }
-    else{
-      this.dataSource = this.genres;
-    }
-    this.genresTable?.renderRows();
-  }
 
 }
 

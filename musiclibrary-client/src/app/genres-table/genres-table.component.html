@@ -2,7 +2,7 @@
 
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>SEARCH GENRES...</mat-label>
-    <input matInput [(ngModel)]="substring" (input)="searchBySubstring()">
+    <input matInput (keyup)="applyFilter($event)">
   </mat-form-field>
 
   <table mat-table #genresTable [dataSource]="dataSource" class="mat-elevation-z8">
