@@ -23,11 +23,11 @@ export class TracksService {
   }
 
   addTrack(additionalUrl: string){
-    return this.http.post<any>('/tracks/addTracks/' + additionalUrl, null);
+    return this.http.post<any>('/tracks/addTracks/' + additionalUrl, null).subscribe(() => this.store.reloadData());
   }
 
   deleteTrack(additionalURL: string){
-    return this.http.delete('/tracks/removeTracks/' + additionalURL);
+    return this.http.delete('/tracks/removeTracks/' + additionalURL).subscribe(() => this.store.reloadData());
   }
 
 }

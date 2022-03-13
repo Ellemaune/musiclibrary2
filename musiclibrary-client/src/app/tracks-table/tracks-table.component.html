@@ -3,7 +3,7 @@
 
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label>SEARCH TRACKS...</mat-label>
-    <input matInput [(ngModel)]="substring" (input)="searchBySubstring()">
+    <input matInput (keyup)="applyFilter($event)">
   </mat-form-field>
 
   <table mat-table #tracksTable [dataSource]="dataSource" class="mat-elevation-z8">
